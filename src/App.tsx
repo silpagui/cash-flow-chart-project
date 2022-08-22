@@ -20,6 +20,9 @@ import {
   sortTransactionsByDate,
 } from "./transactions.utils";
 
+import { Transaction } from "./transactions.models";
+import { APIkey, balanceURL, buildURLProxy, transactionsURL } from "./api.core";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -30,33 +33,23 @@ ChartJS.register(
   Filler
 );
 
-export const options = {
-  responsive: true,
-};
-const APIkey =
-  "34044a757e0385e54e8c5141bad3bb3abb463727afac3cccb8e31d313db9a370";
-
-const transactionsURL =
-  "https://uh4goxppjc7stkg24d6fdma4t40wxtly.lambda-url.eu-central-1.on.aws/transactions";
-
-const balanceURL =
-  "https://uh4goxppjc7stkg24d6fdma4t40wxtly.lambda-url.eu-central-1.on.aws/balances";
-
-function buildURLProxy(url: string) {
-  return `https://cors-anywhere.herokuapp.com/${url}`;
-}
-
 type BalanceState = {
   amount: null | number;
   currency: string;
 };
 
+type ResponseTransactionsData = {
+  transactions: Transaction[];
+};
 function App() {
   const [balance, setBalance] = useState<BalanceState>({
     amount: null,
     currency: "",
   });
-  const [data, setData] = useState({ transactions: [] });
+
+  const [data, setData] = useState<ResponseTransactionsData>({
+    transactions: [],
+  });
 
   useEffect(() => {
     axios
@@ -97,9 +90,8 @@ function App() {
     }
   }, [data.transactions, balance.amount]);
 
-  const labels = orderedBalance.map((item) => item.timestamp);
   const dataChart = {
-    labels: labels,
+    labels: orderedBalance.map((item) => item.timestamp),
     datasets: [
       {
         fill: true,
@@ -122,7 +114,12 @@ function App() {
         </div>
         <div>
           {orderedBalance.length > 0 && (
-            <Line options={options} data={dataChart} />
+            <Line
+              options={{
+                responsive: true,
+              }}
+              data={dataChart}
+            />
           )}
         </div>
       </div>
