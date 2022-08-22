@@ -1,51 +1,41 @@
- @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
 
 .App {
   padding: 50px;
   box-sizing: border-box;
   text-align: center;
   background: #252121;
-  color:rgb(240, 235, 235);
+  color: rgb(240, 235, 235);
   height: 100vh;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-.title{
+.title {
   font-size: 40px;
   line-height: 50px;
   color: rgb(240, 235, 235);
   margin-bottom: 60px;
 }
 
-.balance{
+.balance {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   margin-bottom: 40px;
 }
 
-.balance-amount{
+.balance-amount {
   margin-right: 10px;
   font-size: 30px;
   font-weight: 300;
 }
 
-.balance-currency{
+.balance-currency {
   color: rgb(156, 152, 152);
   font-size: 15px;
 }
 
-.content{
-max-width: 900px;
-margin: auto;
+.content {
+  max-width: 900px;
+  margin: auto;
 }
-
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-
