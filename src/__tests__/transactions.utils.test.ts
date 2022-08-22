@@ -5,25 +5,25 @@ import {
   balanceMapToSortedArr,
 } from "../transactions.utils";
 
-test("When I call the function sorByDateString with the dates 2022-02-07T09:57:27.235Z and 2022-02-08T09:57:27.235Z it should return 1 because the first date is older than the second date", () => {
+test("When the function sorByDateString is called with the dates `2022-02-07T09:57:27.235Z` and `2022-02-08T09:57:27.235Z`, it should return `1` if the first date is older than the second date", () => {
   expect(
     sortByDateString("2022-02-07T09:57:27.235Z", "2022-02-08T09:57:27.235Z")
   ).toBe(1);
 });
 
-test("When I call the function sorByDateString with the dates 2022-02-07T09:57:27.235Z and 2022-02-05T09:57:27.235Z it should return -1 because the first date is newer than the second date", () => {
+test("When the function sorByDateString is called with the dates `2022-02-07T09:57:27.235Z` and `2022-02-05T09:57:27.235Z`, it should return `-1` if the first date is newer than the second date", () => {
   expect(
     sortByDateString("2022-02-07T09:57:27.235Z", "2022-02-05T09:57:27.235Z")
   ).toBe(-1);
 });
 
-test("When I call the function sorByDateString with the dates 2022-02-07T09:57:27.235Z and 2022-02-07T09:57:27.235Z it should return 0 because the first date is equal to the second date", () => {
+test("When the function sorByDateString is called with the dates `2022-02-07T09:57:27.235Z` and `2022-02-07T09:57:27.235Z`, it should return `0` if the first date is equal to the second date", () => {
   expect(
     sortByDateString("2022-02-07T09:57:27.235Z", "2022-02-07T09:57:27.235Z")
   ).toBe(0);
 });
 
-test("When I call sortTransactionsByDate with valid transactions, it should return an ordered array by transactions dates", () => {
+test("When the function sortTransactionsByDate is called with valid transactions as argument, it should return an array ordered by transactions dates", () => {
   const transactionsMock = [
     {
       amount: -765,
@@ -71,7 +71,7 @@ test("When I call sortTransactionsByDate with valid transactions, it should retu
   );
 });
 
-test("When I call the function makeBalanceMap I should receive two arguments, an array of ordered transactions and a balance, and it should return an object with dates as keys related to a balance as value", () => {
+test("When the function makeBalanceMap is called with two arguments an array of ordered transactions and a balance amount, it should return an object with date as key related to the runningBalance of such date", () => {
   const orderedTransactionsMock = [
     {
       amount: -397,
@@ -103,7 +103,7 @@ test("When I call the function makeBalanceMap I should receive two arguments, an
   expect(result).toStrictEqual(balanceMapMock);
 });
 
-test("When I call the function sortBalanceMap I should receive an object of balances by argument, it should return an array of objects ordered by keys of dates", () => {
+test("When the function balanceMapToSortedArr is called with a balance map by argument, it should return an array of objects ordered by dates", () => {
   const balanceMapMock = {
     "2022-01-03": 300,
     "2022-03-06": 200,
